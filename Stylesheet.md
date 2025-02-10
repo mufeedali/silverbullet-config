@@ -165,11 +165,11 @@ html[data-theme="dark"] {
 # Dark Mode Search Fix
 
 ```space-style
-.ͼ2 .cm-button {
+.cm-search .cm-button {
   background-image: none;
 }
 
-.ͼ2 .cm-textfield {
+.cm-search .cm-textfield {
   background-color: var(--panel-background-color);
 }
 ```
