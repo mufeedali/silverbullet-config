@@ -5,7 +5,7 @@ tags:
 ---
 
 - Set the `selector` variable to any class, id, etc that you would like to track class changes for.
-- Reload the UI using {[Debug: Reload UI]} so that the change takes effect.
+- Reload the commands menu using {[System: Reload]} so that the change takes effect.
 - Enable the JavaScript Console in your web browser. (`F12` or `Ctrl+Shift+I` based on the browser.)
 - Start tracking changes using {[Debug: Track class changes]}.
 - Whenever a class change occurs, you will get a log message saying something like `DEBUG: Class attribute changed on:...`.
