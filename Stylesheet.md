@@ -9,15 +9,74 @@ tags:
 ```space-style
 html[data-theme="dark"] {
   --editor-code-background-color: var(--editor-frontmatter-background-color);
-  --editor-border-color: #656565;
+  --editor-border-color: rgba(72, 72, 72, 0.75);
+}
+
+#sb-top {
+  border-bottom: 1px solid var(--editor-border-color);
 }
 
 #sb-main .cm-scroller {
-  padding-top: 8px;
+  padding-top: 1rem;
 }
 
-#sb-main .cm-editor .cm-line {
-  line-height: 1.6;
+#sb-main .cm-editor .sb-lua-directive-block {
+  border: 1px solid var(--editor-border-color);
+}
+
+#sb-main .cm-editor .sb-lua-directive-block h1 {
+  padding-left: 1rem !important;
+  border-radius: 8px;
+  border: 1px solid var(--editor-border-color);
+}
+
+.sb-modal-box {
+  margin-top: 100px;
+  border: 1px solid var(--editor-border-color);
+}
+
+.sb-lua-directive-block {
+  padding: 0.5rem;
+}
+
+/* FIXME: Page switcher caret color workaround */
+.sb-modal-box .cm-line {
+  caret-color: white !important;
+}
+```
+
+# Font
+
+I use the 0xProto Nerd font and it’s placed within `/Fonts`.
+
+```space-style
+/* 0xproto-nerd-font */
+@font-face {
+	font-family: "0xProto Nerd";
+	font-style: normal;
+	font-weight: 400;
+    font-display: swap;
+	src: url("/.fs/Fonts/0xproto-nerd.woff2") format("woff2");
+}
+/* 0xproto-nerd-font-bold */
+@font-face {
+	font-family:"0xProto Nerd";
+	font-style:	normal;
+	font-weight: 700;
+    font-display: swap;
+	src: url("/.fs/Fonts/0xproto-nerd-bold.woff2") format("woff2");
+}
+/* 0xproto-nerd-font-italic */
+@font-face {
+	font-family: "0xProto Nerd";
+	font-style: italic;
+	font-weight: 400;
+    font-display: swap;
+	src: url("/.fs/Fonts/0xproto-nerd-italic.woff2") format("woff2");
+}
+
+#sb-root {
+   --editor-font: "0xProto Nerd" !important;
 }
 ```
 
@@ -27,9 +86,8 @@ html[data-theme="dark"] {
 #sb-main .cm-editor .sb-markdown-top-widget:has(*),
 #sb-main .cm-editor .sb-markdown-bottom-widget:has(*) {
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid var(--editor-border-color);
-  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.35);
 }
 
 #sb-main .cm-editor .sb-markdown-top-widget:has(*) .content > ul,
@@ -51,17 +109,13 @@ html[data-theme="dark"] {
 > **note** Note
 > Also applies the same styling for frontmatter.
 
-> **warning** Warning
-> There is a bug in the shadows where there is a gap between the shadows of each line.
-
 ```space-style
-div:not(.sb-line-fenced-code)
-  + .sb-line-fenced-code:not(.sb-fenced-code-iframe, .sb-fenced-code-hide),
-div:not(.sb-frontmatter) + .sb-frontmatter:not(.cm-line > .sb-frontmatter) {
+:is(div, span):not(.sb-line-fenced-code) + .sb-line-fenced-code:not(.sb-fenced-code-iframe, .sb-fenced-code-hide),
+:is(div, span):not(.sb-frontmatter) + .sb-frontmatter:not(.cm-line > .sb-frontmatter) {
   padding-top: 4px !important;
   border-top: 1px solid var(--editor-border-color);
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 #sb-main .cm-editor .cm-line.sb-line-fenced-code.sb-line-ul,
@@ -70,8 +124,6 @@ div:not(.sb-frontmatter) + .sb-frontmatter:not(.cm-line > .sb-frontmatter) {
   padding-right: 8px; */
   border-left: 1px solid var(--editor-border-color);
   border-right: 1px solid var(--editor-border-color);
-  box-shadow: -5px 0 5px -5px rgba(0, 0, 0, 0.35),
-    5px 0 5px -5px rgba(0, 0, 0, 0.35);
 }
 
 #sb-main .cm-editor .cm-line.sb-line-fenced-code:not(.sb-fenced-code-iframe, .sb-fenced-code-hide, .sb-line-ul, .sb-line-ol),
@@ -80,8 +132,6 @@ div:not(.sb-frontmatter) + .sb-frontmatter:not(.cm-line > .sb-frontmatter) {
   padding-right: 8px !important;
   border-left: 1px solid var(--editor-border-color);
   border-right: 1px solid var(--editor-border-color);
-  box-shadow: -5px 0 5px -5px rgba(0, 0, 0, 0.35),
-    5px 0 5px -5px rgba(0, 0, 0, 0.35);
 }
 
 #sb-main .cm-editor .cm-line.sb-line-fenced-code:not(.sb-fenced-code-hide):has(
@@ -89,10 +139,9 @@ div:not(.sb-frontmatter) + .sb-frontmatter:not(.cm-line > .sb-frontmatter) {
   ),
 .sb-frontmatter:not(.cm-line > .sb-frontmatter):has(+ :not(.sb-frontmatter)) {
   padding-bottom: 4px !important;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   border-bottom: 1px solid var(--editor-border-color);
-  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.35); /* Right and bottom shadow */
 }
 ```
 
@@ -135,22 +184,23 @@ html[data-theme="dark"] {
 ```space-style
 .sb-admonition {
   border-right: 1px solid var(--editor-border-color);
-  box-shadow: -5px 0 5px -5px rgba(0, 0, 0, 0.35),
-    5px 0 5px -5px rgba(0, 0, 0, 0.35);
 }
 
 .sb-admonition-title {
   border-top: 1px solid var(--editor-border-color);
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .sb-admonition:has(+ :not(.sb-admonition)) {
   padding-bottom: 4px !important;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   border-bottom: 1px solid var(--editor-border-color);
-  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.35); /* Right and bottom shadow */
+}
+
+#sb-main .cm-editor .sb-admonition {
+  padding: 4px;
 }
 ```
 
@@ -208,8 +258,8 @@ html[data-theme="dark"] {
 span:not(.cm-line > .sb-frontmatter) + :is(.cm-line > .sb-frontmatter),
 .cm-line > .sb-frontmatter:first-child {
   border-left: 1px solid var(--editor-border-color);
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .cm-line > .sb-frontmatter {
@@ -220,7 +270,7 @@ span:not(.cm-line > .sb-frontmatter) + :is(.cm-line > .sb-frontmatter),
 .cm-line > .sb-frontmatter:has(+ :not(.cm-line > .sb-frontmatter)),
 .cm-line > .sb-frontmatter:last-child {
   border-right: 1px solid var(--editor-border-color);
-  border-top-right-radius: 4px;
+  border-top-right-radius: 8px;
   border-bottom-right-radius: 4px;
 }
 ```

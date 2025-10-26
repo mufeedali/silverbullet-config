@@ -11,11 +11,15 @@ tags:
 - Whenever a class change occurs, you will get a log message saying something like `DEBUG: Class attribute changed on:...`.
 - If you’ve found what you were looking for, you can disable tracking using {[Debug: Stop tracking class changes]}.
 
+{[Debug: Track class changes|Start Tracking]("#sb-current-page")}
+
 ```space-script
 window.classChangeMonitorController = null;
 
-silverbullet.registerCommand({name: "Debug: Track class changes"}, async () => {
-  const selector = "#sb-current-page";
+silverbullet.registerCommand({name: "Debug: Track class changes"}, async (selector="#sb-current-page") => {
+  if (!selector)
+    selector = "#sb-current-page";
+  console.log(selector);
   const targets = document.querySelectorAll(selector);
 
   const observer = new MutationObserver((mutations) => {
